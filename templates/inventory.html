@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+<div class="row">
+		<div class="dealership name col-md-6">
+				<h2>{{ dealership.name }}</h2>
+		</div>
+
+		<div class="col-md-1 pull-left">
+				<figure class="creator">
+						<a href="/"><img src="{{ creator.picture}}"
+							 class="img-responsive" alt="Creator Image">
+						</a>
+						<figcaption>{{ creator.name }}</figcaption>
+				</figure>
+		</div>
+
+		<div class="col-md-1.5 pull-right">
+				<a href="{{url_for('editDealership', dealership_id = dealership.id )}}">
+						<button class="btn btn-primary" id="edit-dealership">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Dealership
+						</button>
+				</a>
+		</div>
+
+		<div class="col-md-2 pull-right">
+				<a href="{{url_for('deleteDealership', dealership_id = dealership.id )}}">
+						<button class="btn btn-danger delete" id="delete-dealership">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Dealership
+						</button>
+				</a>
+		</div>
+</div>
+
+<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+    <li> <strong> {{ message }} </strong> </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+
+<hr>
+<div class="col-md-12">
+		<div class="col-md-1 pull-left">
+				<a href="{{url_for('newCar', dealership_id = dealership.id )}}">
+						<button class="btn btn-primary pull-left" id="add-car-to-inventory">
+								<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Add Car
+						</button>
+				</a>
+		</div>
+</div>
+
+{% if cars !=[] %}
+<div class="row car-inventory">
+		<div class="col-md-3">
+				<h2>Sedans</h2>
+				{% for i in cars %}
+				{% if i.type == 'Sedan' %}
+				<div class="inventory-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.brand}}</p>
+						<p>{{i.year}}</p>
+						<p>{{i.color}}</p>
+						<p>{{i.description}}</p>
+						<p>{{i.price}}</p>
+						<a href='{{url_for('editCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Edit</a> |
+						<a href='{{url_for('deleteCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Delete</a>
+				</div>
+				{% endif %}
+				{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+				<h2>Sports Cars</h2>
+					{% for i in cars %}
+					{% if i.type == 'Sports Car' %}
+					<div class="inventory-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.brand}}</p>
+							<p>{{i.year}}</p>
+							<p>{{i.color}}</p>
+							<p>{{i.description}}</p>
+							<p class="car-price">{{i.price}}</p>
+							<a href='{{url_for('editCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Edit</a> |
+							<a href='{{url_for('deleteCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Delete</a>
+					</div>
+					{% endif %}
+					{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+				<h2>Coupe</h2>
+				{% for i in cars %}
+				{% if i.type == 'Coupe' %}
+				<div class="inventory-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.brand}}</p>
+						<p>{{i.year}}</p>
+						<p>{{i.color}}</p>
+						<p>{{i.description}}</p>
+						<p class="car-price">{{i.price}}</p>
+						<a href='{{url_for('editCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Edit</a> |
+						<a href='{{url_for('deleteCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Delete</a>
+				</div>
+				{% endif %}
+				{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+				<h2>Trucks</h2>
+				{% for i in cars %}
+				{% if i.type == 'Truck' %}
+				<div class="inventory-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.brand}}</p>
+						<p>{{i.year}}</p>
+						<p>{{i.color}}</p>
+						<p>{{i.description}}</p>
+						<p class="car-price">{{i.price}}</p>
+						<a href='{{url_for('editCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Edit</a> |
+						<a href='{{url_for('deleteCar', dealership_id = dealership.id, inventory_id=i.id ) }}'>Delete</a>
+				</div>
+				{% endif %}
+				{% endfor %}
+		</div>
+</div>
+{% endif %}
+{% include "footer.html" %}
+
+{% endblock %}

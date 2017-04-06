@@ -1,0 +1,49 @@
+<!-- Header Section -->
+<div class=row>
+<header class="car-dealership-catalog-header">
+		<hr>
+    <div class="row">
+        <ul class="main-menu col-md-9 col-sm-12 col-xs-12">
+            <li class="nav-item">
+								<a href="{{url_for('showDealerships')}}">
+										<span class="glyphicon glyphicon-home" aria-hidden="true"></span> All Dealerships
+								</a>
+						</li>
+            <li class="nav-item"><a href="{{url_for('showSedans')}}">Sedans</a></li>
+            <li class="nav-item"><a href="{{url_for('showSportscars')}}">Sports Cars</a></li>
+            <li class="nav-item"><a href="{{url_for('showCoupes')}}">Coupes</a></li>
+            <li class="nav-item"><a href="{{url_for('showTrucks')}}">Trucks</a></li>
+        </ul>
+
+        <div class="header-section-menu pull-right col-md-3 col-sm-12 col-xs-12">
+						{%if 'username' not in session %}
+								<a class="btn btn-primary pull-right login" href="{{url_for('showLogin')}}">Click Here to Login
+										<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								</a>
+						{% else %}
+								<a class="btn btn-danger pull-right logout" href="{{url_for('disconnect')}}">Logout
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</a>
+								<a class="btn btn-primary pull-right add-dealer" href="{{url_for('newDealership')}}">Add Dealership
+										<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+								</a>
+						{% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="header-section-body col-md-9 col-sm-6 col-xs-12">
+            <a href="/"><img src="/static/images/car-banner.jpg"
+                 class="img-responsive" alt="Main Catalog Image"></a>
+        </div>
+				<div class="header-section col-md-3 col-sm-6 col-xs-12">
+						<h1>Classic Car Catalog</h1>
+						<h4>
+              Welcome to the Classic Car Catalog!! This catalog includes
+							some interesting dealerships and classic car inventories...
+            </h4>
+        </div>
+    </div>
+    <hr>
+</header>
+</div>

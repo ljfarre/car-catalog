@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+<div class="row divider">
+		<div class="col-md-12"></div>
+</div>
+
+<div class="row banner dealership inventory">
+		<div class="dealership name col-md-5">
+				<h2>{{ dealership.name }}</h2>
+		</div>
+
+		<div class="col-md-1">
+				<figure class="creator">
+						<a href="/"><img src="{{ creator.picture}}"
+							 class="img-responsive" alt="Creator Image">
+						</a>
+						<figcaption>{{ creator.name }}</figcaption>
+				</figure>
+		</div>
+</div>
+
+<hr>
+
+<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+    <li> <strong> {{ message }} </strong> </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+
+{% if cars !=[] %}
+<div class="row car-inventory">
+		<div class="col-md-3">
+				<h2>Sedans</h2>
+				{% for i in cars %}
+				{% if i.type == 'Sedan' %}
+				<div class="inventory-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.brand}}</p>
+						<p>{{i.year}}</p>
+						<p>{{i.color}}</p>
+						<p>{{i.description}}</p>
+						<p class="car-price">{{i.price}}</p>
+				</div>
+				{% endif %}
+				{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+				<h2>Sports Cars</h2>
+					{% for i in cars %}
+					{% if i.type == 'Sports Car' %}
+					<div class="inventory-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.brand}}</p>
+							<p>{{i.year}}</p>
+							<p>{{i.color}}</p>
+							<p>{{i.description}}</p>
+							<p class="car-price">{{i.price}}</p>
+					</div>
+					{% endif %}
+					{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+				<h2>Coupe</h2>
+				{% for i in cars %}
+				{% if i.type == 'Coupe' %}
+				<div class="inventory-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.brand}}</p>
+						<p>{{i.year}}</p>
+						<p>{{i.color}}</p>
+						<p>{{i.description}}</p>
+						<p>{{i.price}}</p>
+				</div>
+				{% endif %}
+				{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+				<h2>Trucks</h2>
+				{% for i in cars %}
+				{% if i.type == 'Truck' %}
+				<div class="inventory-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.brand}}</p>
+						<p>{{i.year}}</p>
+						<p>{{i.color}}</p>
+						<p>{{i.description}}</p>
+						<p class="car-price">{{i.price}}</p>
+				</div>
+				{% endif %}
+				{% endfor %}
+		</div>
+</div>
+{% endif %}
+{% include "footer.html" %}
+
+{% endblock %}

@@ -1,0 +1,87 @@
++{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+<div class="row divider">
+		<div class="col-md-12"></div>
+</div>
+
+<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+				<h1>Edit Car Information</h1>
+		</div>
+</div>
+
+<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+				<form action="#" method = "post">
+						<div class="form-group">
+								<label for="name">Name:</label>
+								<input type ="text" maxlength="100" class="form-control" name="name" value="{{car.name }}" required>
+
+								<label for="brand">Brand:</label>
+								<input type ="text" maxlength="50" class="form-control" name="brand" value="{{car.brand }}" required>
+
+								<label for="year">Year:</label>
+								<input type ="text" maxlength="4" class="form-control" name="year" value="{{car.year }}" required>
+
+								<label for="color">Color:</label>
+								<input type ="text" maxlength="50" class="form-control" name="color" value="{{car.color }}" required>
+
+								<label for="description">Description:</label>
+								<textarea class="form-control" maxlength="250" rows="3" name="description" required>{{car.description}}</textarea>
+								<label for="price">Price:</label>
+
+								<div class="input-group">
+										<div class="input-group-addon">$</div>
+										<input type ="text" maxlength="10" class="form-control" name="price" value="{{car.price}}" required>
+								</div>
+
+								<label for="type">Car Type:</label>
+								<div class="radio">
+									  <label>
+									    	<input type="radio" name="type" id="type1" value="Sedan" {% if car.type == 'Sedan'%}checked{%endif%} required>Sedan
+									  </label>
+								</div>
+
+								<div class="radio">
+									  <label>
+									    	<input type="radio" name="type" id="type2" value="Sports Car" {% if car.type == 'Sports Car' %}checked{%endif%} required>Sports Car
+									  </label>
+								</div>
+
+								<div class="radio">
+									  <label>
+									    	<input type="radio" name="type" id="type3" value="Coupe" {% if car.type == 'Coupe'%}checked{%endif%} required>Coupe
+									  </label>
+								</div>
+
+								<div class="radio">
+									  <label>
+									    	<input type="radio" name="type" id="type4" value="Truck" {%if car.type == 'Truck'%}checked{%endif%} required>Truck
+									  </label>
+								</div>
+
+								<button type="submit" class="btn btn-success add-car" id="submit" type="submit">
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
+						</div>
+				</form>
+
+				<form method="cancel">
+						<div class="cancel-car-input col-md-1">
+								<button type="cancel" class="btn btn-danger pull-left" id="cancel">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+						</div>
+				</form>
+
+				<script>
+						$("#cancel").on("submit", function(e) {
+						e.preventDefault();
+						return false;
+					});
+				</script>
+		</div>
+</div>
+{% include "footer.html" %}
+
+{% endblock %}

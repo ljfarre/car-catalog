@@ -1,0 +1,166 @@
+/* General Styles */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+[class*="zocial-"]:before {
+  color: black;
+  display: inline-block;
+  font-family: 'zocial', sans-serif;
+  text-shadow: 3px 3px 3px #aaa;
+  width: 2em;
+}
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: #505050;
+    font: 16px "Roboto", sans-serif;
+    margin: 0;
+    background: #ffffe6;
+}
+
+hr {
+    background-color: dimgrey !important;
+    color: dimgrey !important;
+    border: solid 1px dimgrey !important;
+    height: 1px !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: brown;
+    font-style: oblique;
+    font-weight: bolder;
+    margin-bottom: 0px;
+}
+
+h2 {
+    font-weight: bolder;
+    font-style: oblique;
+}
+
+h3 {
+    color: brown;
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+/* Header Styles */
+.login {
+    margin-right: 3px;
+}
+
+.logout {
+    margin-right: 3px;
+}
+
+.add-dealer {
+    margin-right: 10px;
+}
+
+.add-car {
+    margin-left: 15px;
+}
+
+.creator {
+	padding-right: 20px;
+	margin-top: 10px;
+	text-align: right;
+	float:right;
+}
+
+.creator img {
+	width: 100px;
+	border-radius: 50%;
+}
+
+.creator figcaption {
+	font-size: 14px;
+	color: brown;
+  text-align: center;
+	font-weight: 400;
+	margin-top: 5px;
+}
+
+.header-section-body {
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: auto;
+}
+
+.main-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+.nav-item {
+    float: left;
+    margin-left: 15px;
+    font-weight: bolder;
+}
+
+.nav-item a {
+    display: block;
+    padding: 10px;
+    background-color: #dddddd;
+}
+
+ul.main-menu li.right {
+    float: right;
+}
+
+@media screen and (max-width: 600px){
+    ul.main-menu li.right,
+    ul.main-menu li {
+      float: none;
+      width: 125px;
+    }
+}
+
+.link-item {
+    margin-left: 25px;
+    font-weight: bolder;
+}
+
+.udacity-icon {
+    margin-bottom: 0px;
+    max-width: 70px;
+    max-height: 70px;
+}
+
+/* Catalog Content Styles */
+.car-inventory {
+    background-color: lightgrey;
+    border: 5px solid #337ab7;
+    padding: 15px;
+    margin: 5px;
+}
+
+.car {
+    background-color: lightgrey;
+    border: 5px solid #337ab7;
+    padding: 15px;
+    margin: 5px;
+}
+
+/* Footer Styles */
+.catalog-footer {
+    text-align: center;
+}
+
+.footer-note {
+    margin-left: 10px;
+}
+
+.login-options {
+    margin: 10px;
+    margin-top: 20px;
+}

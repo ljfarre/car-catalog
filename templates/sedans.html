@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+    <li> <strong> {{ message }} </strong> </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+
+{% if cars !=[] %}
+<div class="row">
+		<h2>All Sedans in Catalog</h2>
+				<div class="col-md-12 inventory-item">
+				{% for i in cars %}
+				{% if i.type == 'Sedan' %}
+				<div class="car">
+						<h3>{{i.name}}</h3>
+						<p><b>Make: </b> {{i.brand}}</p>
+						<p><b>Year: </b>{{i.year}}</p>
+						<p><b>Color: </b>{{i.color}}</p>
+						<p><b>Description: </b>{{i.description}}</p>
+						<p><b>Price: </b>{{i.price}}</p>
+						<p><b>Dealership: </b>{{i.dealership.name}} <b>Phone: </b>{{i.dealership.phone}}</p>
+				</div>
+				<br>
+				{% endif %}
+				{% endfor %}
+		</div>
+</div>
+{% endif %}
+{% include "footer.html" %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+<div class = 'flash'>
+	  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+		    {% for message in messages %}
+		        <li> <strong> {{ message }} </strong> </li>
+		    {% endfor %}
+    </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<div class="list-group">
+	  <a href="#" class="list-group-item active">
+	    <h1><i>Complete Listing of All Dealerships in the Catalog</i></h1>
+	  </a>
+		{% for dealership in dealerships %}
+		{% if dealership != None %}
+	  <a href="{{url_for('showInventory', dealership_id = dealership.id)}}" class="list-group-item list-group-item-action"><b>{{dealership.name}}</b> -- {{dealership.address}}  ({{dealership.phone}}) </a>
+		{% endif %}
+		{% endfor %}
+</div>
+{% include "footer.html" %}
+
+{% endblock %}
