@@ -1,3 +1,8 @@
+# Lee's Item Catalog Project
+# 4/8/2017
+# Version 1.0
+# Udacity Fullstack Nanodegree
+#
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -31,8 +36,8 @@ class Dealership(Base):
         return {
             'name': self.name,
             'id': self.id,
-            'address' : self.address,
-            'phone' : self.phone,
+            'address': self.address,
+            'phone': self.phone,
         }
 
 

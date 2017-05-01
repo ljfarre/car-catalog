@@ -16,28 +16,28 @@
 		<div class="col-md-6 col-md-offset-1 padding-top">
 				<form action="#" method = "post">
 						<div class="form-group">
-								<label for="name">Name:</label>
+								<label>Name:</label>
 								<input type ="text" maxlength="100" class="form-control" name="name" value="{{car.name }}" required>
 
-								<label for="brand">Brand:</label>
+								<label>Brand:</label>
 								<input type ="text" maxlength="50" class="form-control" name="brand" value="{{car.brand }}" required>
 
-								<label for="year">Year:</label>
+								<label>Year:</label>
 								<input type ="text" maxlength="4" class="form-control" name="year" value="{{car.year }}" required>
 
-								<label for="color">Color:</label>
+								<label>Color:</label>
 								<input type ="text" maxlength="50" class="form-control" name="color" value="{{car.color }}" required>
 
-								<label for="description">Description:</label>
+								<label>Description:</label>
 								<textarea class="form-control" maxlength="250" rows="3" name="description" required>{{car.description}}</textarea>
-								<label for="price">Price:</label>
 
+								<label>Price:</label>
 								<div class="input-group">
 										<div class="input-group-addon">$</div>
 										<input type ="text" maxlength="10" class="form-control" name="price" value="{{car.price}}" required>
 								</div>
 
-								<label for="type">Car Type:</label>
+								<label>Car Type:</label>
 								<div class="radio">
 									  <label>
 									    	<input type="radio" name="type" id="type1" value="Sedan" {% if car.type == 'Sedan'%}checked{%endif%} required>Sedan
@@ -62,14 +62,14 @@
 									  </label>
 								</div>
 
-								<button type="submit" class="btn btn-success add-car" id="submit" type="submit">
+								<button type="submit" class="btn btn-success add-car" id="submit">
 								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
 						</div>
 				</form>
 
-				<form method="cancel">
+				<form method="get">
 						<div class="cancel-car-input col-md-1">
-								<button type="cancel" class="btn btn-danger pull-left" id="cancel">
+								<button type="submit" class="btn btn-danger pull-left" id="cancel">
 								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
 						</div>
 				</form>

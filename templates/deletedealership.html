@@ -7,13 +7,13 @@
 <div class="row col-md-12">
 		<div class="col-md-1 pull-left">
 				<form action="#" method = 'post'>
-						<button type="submit" class="btn btn-danger pull-left" id="submit" type="submit">
+						<button type="submit" class="btn btn-danger pull-left" id="submit">
 						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
 				</form>
 		</div>
 
 		<div class="col-md-1 pull-left">
-				<form action="{{url_for('showDealerships')}}" method="cancel">
+				<form action="{{url_for('showDealerships')}}" method="get">
 						<button class="btn btn-primary">
 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Cancel</button>
 				</form>

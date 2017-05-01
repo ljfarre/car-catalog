@@ -17,25 +17,25 @@
 		<div class="col-md-6 col-md-offset-1 padding-top">
 				<form action="{{ url_for('editDealership',dealership_id = dealership.id)}}" method = "post">
 						<div class="form-group">
-								<label for="name">Name:</label>
+								<label>Name:</label>
 								<input type ="text" maxlength="250" class="form-control" name="name" value="{{dealership.name }}" required>
 
-								<label for="address">Address:</label>
+								<label>Address:</label>
 								<input type ="text" maxlength="250" class="form-control" name="address" value="{{dealership.address }}" required>
 
-								<label for="phone">Phone:</label>
+								<label>Phone:</label>
 								<input type ="text" maxlength="15" class="form-control" name="phone" value="{{dealership.phone }}" required>
 						</div>
 						<div class="padding-bottom"></div>
 						<div>
-								<button type="submit" class="btn btn-success pull-left" id="submit" type="submit">
+								<button type="submit" class="btn btn-success pull-left" id="submit">
 								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
 						</div>
 				</form>
 
-				<form method="cancel">
+				<form method="get">
             <div class="cancel-input col-md-1">
-                <button type="cancel" class="btn btn-danger pull-left" id="cancel">
+                <button type="submit" class="btn btn-danger pull-left" id="cancel">
 								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
             </div>
         </form>

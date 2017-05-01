@@ -49,20 +49,18 @@ environment to run the Car Catalog app.  The following steps should complete thi
 process:
 
 1. Open a Git Bash shell and navigate to the directory where you want to install
-the subdirectory for the car catalog application.  You are biw ready to fetch
+the subdirectory for the car catalog application.  You are now ready to fetch
 the source code and VM Configuration for the car catalog project. From the
 terminal, run:
 
-    https://github.com/ljfarre/classic-car-catalog.git catalog
+    git clone https://github.com/ljfarre/car-catalog.git catalog
 
 This will give you a directory named **catalog** complete with the source code for
 the flask application, a vagrantfile, and a pg_config.sh file for configuring
-the environment.  
+the VM environment.  
 
 2. Using the terminal, change directory to catalog (**cd catalog**),
 then type **vagrant up** to launch your virtual machine.
-
-    git clone https://github.com/udacity/OAuth2.0
 
 3. Once your VM is up and running, type **vagrant ssh**. This will log your
 terminal into the virtual machine, and you'll get a Linux shell prompt.  
@@ -73,9 +71,9 @@ database_setup.py, Vagrantfile, pg_config.sh, lotsofdealers.py, client_secrets.j
 cardealerships.db, README.md and three directories named 'templates', 'static'
 and 'oauth2client'.
 
-4. When you are in the correct directory, the following commands will setup
-your Car Catalog DB, populate it with a few dealerships and cars, and launch
-the app.  If you want to run the app with the prepopulated data beyond what is
+4. When you are in the /catalog directory, the following commands will setup
+your Car Catalog db, populate it with a few dealerships and cars, and launch
+the app.  If you want to run the app with the prepopulated test data beyond what is
 in the lotsofdealers.py file just skip to the third instruction below.
 
 * type **python database_setup.py** to initialize the database.

@@ -1,4 +1,10 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
+# Lee's Item Catalog Project
+# 4/8/2017
+# Version 1.0
+# Udacity Fullstack Nanodegree
+#
+from flask import Flask, render_template, request, redirect
+from flask import jsonify, url_for, flash
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Dealership, Car, User
@@ -92,8 +98,8 @@ def gconnect():
     stored_credentials = login_session.get('credentials')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
-                                 200)
+        response = make_response(json.dumps /
+                                 ('Current user is already connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -126,7 +132,8 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' " style = "width: 300px; height: 300px;border-radius: 150px; \
+              -webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
@@ -241,7 +248,8 @@ def allCarsJSON():
 def showDealerships():
     dealerships = session.query(Dealership).order_by(asc(Dealership.name))
     if 'username' not in login_session:
-        return render_template('publicdealerships.html', dealerships=dealerships)
+        return render_template('publicdealerships.html',
+                               dealerships=dealerships)
     else:
         return render_template('dealerships.html', dealerships=dealerships)
 
@@ -272,7 +280,9 @@ def editDealership(dealership_id):
     if 'username' not in login_session:
         return redirect('/login')
     if editedDealership.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to edit this dealership. Please create your own dealership in order to edit.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+               to edit this dealership. Please create your own dealership in \
+               order to edit.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editedDealership.name = request.form['name']
@@ -285,7 +295,8 @@ def editDealership(dealership_id):
         flash('Dealership Successfully Edited %s' % editedDealership.name)
         return redirect(url_for('showDealerships'))
     else:
-        return render_template('editdealership.html', dealership=editedDealership)
+        return render_template('editdealership.html',
+                               dealership=editedDealership)
 
 
 # Delete a dealership
@@ -296,14 +307,19 @@ def deleteDealership(dealership_id):
     if 'username' not in login_session:
         return redirect('/login')
     if dealershipToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this dealership. Please create your own dealership in order to delete.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() \
+               {alert('You are not authorized to delete this dealership. \
+               Please create your own dealership in order to \
+               delete.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(dealershipToDelete)
         session.commit()
         flash('%s Successfully Deleted' % dealershipToDelete.name)
-        return redirect(url_for('showDealerships', dealership_id=dealership_id))
+        return redirect(url_for('showDealerships',
+                        dealership_id=dealership_id))
     else:
-        return render_template('deletedealership.html', dealership=dealershipToDelete)
+        return render_template('deletedealership.html',
+                               dealership=dealershipToDelete)
 
 
 # Show a dealership inventory
@@ -313,20 +329,27 @@ def showInventory(dealership_id):
     dealership = session.query(Dealership).filter_by(id=dealership_id).one()
     creator = getUserInfo(dealership.user_id)
     cars = session.query(Car).filter_by(dealership_id=dealership_id).all()
-    if 'username' not in login_session or creator.id != login_session['user_id']:
-        return render_template('publicinventory.html', cars=cars, dealership=dealership, creator=creator)
+    if 'username' not in login_session or \
+            creator.id != login_session['user_id']:
+        return render_template('publicinventory.html', cars=cars,
+                               dealership=dealership, creator=creator)
     else:
-        return render_template('inventory.html', cars=cars, dealership=dealership, creator=creator)
+        return render_template('inventory.html', cars=cars,
+                               dealership=dealership, creator=creator)
 
 
 # Create a new car record in dealership inventory
-@app.route('/dealership/<int:dealership_id>/inventory/new/', methods=['GET', 'POST'])
+@app.route('/dealership/<int:dealership_id>/inventory/new/',
+           methods=['GET', 'POST'])
 def newCar(dealership_id):
     if 'username' not in login_session:
         return redirect('/login')
     dealership = session.query(Dealership).filter_by(id=dealership_id).one()
     if login_session['user_id'] != dealership.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to add inventory items to this dealership. Please create your own dealership in order to add cars.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized  \
+               to add inventory items to this dealership. Please create your \
+               own dealership in order to add cars.');} \
+               </script><body onload='myFunction()''>"
     if request.method == 'POST':
         newCar = Car(name=request.form['name'],
                      brand=request.form['brand'],
@@ -341,7 +364,8 @@ def newCar(dealership_id):
             session.add(newCar)
             session.commit()
             flash('New %s Car Successfully Created' % (newCar.name))
-            return redirect(url_for('showInventory', dealership_id=dealership_id))
+            return redirect(url_for('showInventory',
+                            dealership_id=dealership_id))
         else:
             return render_template('newcar.html', dealership_id=dealership_id)
     else:
@@ -349,14 +373,18 @@ def newCar(dealership_id):
 
 
 # Edit an car details
-@app.route('/dealership/<int:dealership_id>/inventory/<int:inventory_id>/edit', methods=['GET', 'POST'])
+@app.route('/dealership/<int:dealership_id>/inventory/<int:inventory_id>/ \
+           edit', methods=['GET', 'POST'])
 def editCar(dealership_id, inventory_id):
     if 'username' not in login_session:
         return redirect('/login')
     editedCar = session.query(Car).filter_by(id=inventory_id).one()
     dealership = session.query(Dealership).filter_by(id=dealership_id).one()
     if login_session['user_id'] != dealership.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to edit inventory items for this dealership. Please create your own dealership in order to edit cars.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+                to edit inventory items for this dealership. Please create \
+                your own dealership in order to edit cars.');}</script><body \
+                onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editedCar.name = request.form['name']
@@ -377,18 +405,24 @@ def editCar(dealership_id, inventory_id):
         session.commit()
         return redirect(url_for('showInventory', dealership_id=dealership_id))
     else:
-        return render_template('editcar.html', dealership_id=dealership_id, inventory_id=inventory_id, car=editedCar)
+        return render_template('editcar.html',
+                               dealership_id=dealership_id,
+                               inventory_id=inventory_id, car=editedCar)
 
 
 # Delete a car from dealerhip inventory
-@app.route('/dealership/<int:dealership_id>/inventory/<int:inventory_id>/delete', methods=['GET', 'POST'])
+@app.route('/dealership/<int:dealership_id>/inventory/<int:inventory_id> \
+           /delete', methods=['GET', 'POST'])
 def deleteCar(dealership_id, inventory_id):
     if 'username' not in login_session:
         return redirect('/login')
     dealership = session.query(Dealership).filter_by(id=dealership_id).one()
     carToDelete = session.query(Car).filter_by(id=inventory_id).one()
     if login_session['user_id'] != dealership.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to delete inventory cars to this dealership. Please create your own dealership in order to delete cars.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+                to delete inventory cars to this dealership. Please create \
+                your own dealership in order to delete cars.');}</script> \
+                <bodyonload='myFunction()'' > "
     if request.method == 'POST':
         session.delete(carToDelete)
         session.commit()
